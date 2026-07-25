@@ -20,7 +20,7 @@ jobs:
         run: pip install pyyaml
 
       - name: Generate RSS Feed
-        run: python generate_feed.py
+        run: python feed.py
 
       - name: Commit feed.xml
         run: |
