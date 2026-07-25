@@ -26,6 +26,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add feed.xml
-          git commit -m "Update feed.xml" || echo "No changes"
+          git add podcast.xml
+          git commit -m "Update podcast.xml" || echo "No changes"
           git push
