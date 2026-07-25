@@ -1,12 +1,31 @@
 name: Generate Podcast Feed
 
-on: [push]
+on:
+  push:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Run Feed Generator
-        user: Kesarmahato/podcast-gene@main
-      
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Generate RSS Feed
+        run: python feed.py
+
+      - name: Commit podcast.xml
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add podcast.xml
+          git commit -m "Update podcast.xml" || echo "No changes"
+          git push
